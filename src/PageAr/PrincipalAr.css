@@ -1,0 +1,208 @@
+/* ============================================================
+   SECTOR: FRONTEND
+   Archivo: src/PageAr/PrincipalAr.css
+   Descripción: Estilos del navbar fijo y wrapper principal.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Arsenal:wght@400;700&display=swap');
+
+:root {
+  --red:      #C0272D;
+  --red-dark: #9B1D22;
+  --red-nav:  #B22222;
+  --white:    #FFFFFF;
+  --text:     #1A1A1A;
+}
+
+/* Scroll suave global */
+html { scroll-behavior: smooth; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── WRAPPER ── */
+.principal-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arsenal', sans-serif;
+}
+
+/* ════════════════════════════════
+   NAVBAR FIJA
+   ════════════════════════════════ */
+.principal-nav {
+  display: flex;
+  align-items: center;
+  background: var(--red-nav);
+  padding: 0 48px;
+  height: 72px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* Logo */
+.principal-nav-logo {
+  display: flex;
+  align-items: center;
+  margin-right: 48px;
+  text-decoration: none;
+}
+
+.principal-nav-img {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+}
+.principal-nav-img:hover { transform: scale(1.08); }
+
+/* Links */
+.principal-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.principal-nav-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  padding: 8px 20px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+.principal-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 20px; right: 20px;
+  height: 2px;
+  background: white;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.principal-nav-link:hover { color: white; }
+.principal-nav-link:hover::after { transform: scaleX(1); }
+
+/* ── USUARIO CON DROPDOWN ── */
+.principal-nav-user {
+  margin-left: auto;
+  position: relative;
+}
+
+.principal-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 7px 16px 7px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: white;
+}
+.principal-user-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Avatar — inicial del nombre */
+.principal-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--red-dark);
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.principal-user-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.principal-user-arrow {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.principal-user-arrow.open { transform: rotate(180deg); }
+
+/* Dropdown */
+.principal-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+  border-top: 3px solid var(--red);
+  z-index: 200;
+  animation: dropdownIn 0.2s ease;
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.principal-dropdown-item {
+  width: 100%;
+  padding: 13px 20px;
+  font-family: 'Arsenal', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+.principal-dropdown-item:hover { background: #F5EEEE; }
+.principal-dropdown-item.danger { color: var(--red); }
+.principal-dropdown-item.danger:hover { background: #FFF0F0; }
+
+.principal-dropdown-divider {
+  height: 1px;
+  background: #EEE;
+  margin: 2px 0;
+}
+
+/* ════════════════════════════════
+   SECCIONES
+   Cada section ocupa toda la pantalla
+   ════════════════════════════════ */
+.principal-wrapper section {
+  min-height: 100vh;
+  padding-top: 72px; /* compensa el navbar fijo */
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .principal-nav { padding: 0 20px; }
+  .principal-nav-links { display: none; }
+  .principal-user-name { display: none; }
+}

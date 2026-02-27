@@ -1,0 +1,306 @@
+/* ============================================================
+   SECTOR: FRONTEND
+   Archivo: src/components/Login.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Arsenal:wght@400;700&display=swap');
+
+:root {
+  --red:      #C0272D;
+  --red-dark: #9B1D22;
+  --bg-right: #F5EEEE;
+  --white:    #FFFFFF;
+  --text:     #1A1A1A;
+  --text-sub: #5A3A3A;
+  --border:   #D4B0B0;
+  --error:    #e53935;
+  --cancel:   #BDBDBD;
+  --cancel-hover: #9E9E9E;
+}
+
+/* ── WRAPPER — Dos columnas, pantalla completa ── */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Arsenal', sans-serif;
+}
+
+/* ════════════════════════════════
+   PANEL IZQUIERDO — Rojo Arsenal
+   ════════════════════════════════ */
+.login-left {
+  width: 42%;
+  background: linear-gradient(170deg, var(--red) 0%, var(--red-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 40px;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+}
+.login-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Glow sutil de fondo */
+.login-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,255,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Línea separadora derecha */
+.login-left::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+}
+
+/* Logo */
+.login-logo {
+  height: 90px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+.login-logo:hover { transform: scale(1.06); }
+
+/* Título bienvenida */
+.login-welcome-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+
+/* Imagen del equipo */
+.login-fond-wrap {
+  width: 100%;
+  max-width: 320px;
+  height: 210px;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
+.login-fond-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.login-fond-img:hover { transform: scale(1.04); }
+
+/* Slogan */
+.login-slogan {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  z-index: 1;
+}
+
+/* ════════════════════════════════
+   PANEL DERECHO — Formulario
+   ════════════════════════════════ */
+.login-right {
+  flex: 1;
+  background: var(--bg-right);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s ease 0.25s, transform 0.8s ease 0.25s;
+}
+.login-right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.login-form-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Header */
+.login-form-header {
+  margin-bottom: 40px;
+}
+
+.login-form-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.login-form-subtitle {
+  font-family: 'Arsenal', sans-serif;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.login-link {
+  color: var(--red);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.login-link:hover { color: var(--red-dark); }
+
+/* ── FORM ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-sub);
+}
+
+.login-input {
+  font-family: 'Arsenal', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: white;
+  border: 2px solid var(--border);
+  padding: 13px 16px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.login-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(192,39,45,0.12);
+}
+.login-input.error { border-color: var(--error); }
+.login-input::placeholder { color: #B0A0A0; }
+
+/* Input con ojo */
+.login-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.login-input.with-suffix { padding-right: 44px; }
+
+.login-eye {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.6;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+.login-eye:hover { opacity: 1; }
+
+/* Error */
+.login-error {
+  font-family: 'Arsenal', sans-serif;
+  font-size: 12px;
+  color: var(--error);
+}
+
+/* ── BOTONES ── */
+.login-btns {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.login-btn-submit {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: white;
+  background: var(--red);
+  border: none;
+  padding: 14px 32px;
+  cursor: pointer;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.login-btn-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.13);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+}
+.login-btn-submit:hover {
+  background: var(--red-dark);
+  box-shadow: 0 6px 20px rgba(192,39,45,0.4);
+}
+.login-btn-submit:hover::after { transform: translateX(0); }
+
+.login-btn-cancel {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: white;
+  background: var(--cancel);
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.login-btn-cancel:hover { background: var(--cancel-hover); }
+
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
+@media (max-width: 768px) {
+  .login-wrapper { flex-direction: column; }
+  .login-left {
+    width: 100%;
+    padding: 40px 24px;
+    gap: 20px;
+  }
+  .login-fond-wrap { height: 180px; }
+  .login-right { padding: 40px 24px; }
+  .login-btns { flex-direction: column; }
+}
